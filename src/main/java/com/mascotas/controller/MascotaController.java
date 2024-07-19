@@ -40,7 +40,7 @@ public class MascotaController {
         return ResponseEntity.ok(mascotaService.create(mascotaRequest));
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Void> update(@RequestBody @Valid MascotaRequest mascotaRequest, @PathVariable Long id) {
         mascotaService.update(mascotaRequest, id);
         return ResponseEntity.accepted().build();

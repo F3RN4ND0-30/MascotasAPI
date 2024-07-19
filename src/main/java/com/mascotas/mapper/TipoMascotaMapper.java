@@ -6,7 +6,7 @@ import com.mascotas.models.TipoMascota;
 
 public class TipoMascotaMapper {
     public static TipoMascotaResponds entityToDto(TipoMascota tipoMascota) {
-        return new TipoMascotaResponds(tipoMascota.getNombre());
+        return new TipoMascotaResponds(tipoMascota.getId(),tipoMascota.getNombre());
     }
 
     public static TipoMascota dtoToEntity(TipoMascotaResponds tipomascotaResponds) {
