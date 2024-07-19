@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mascotas.models.Mascota;
+import com.mascotas.dto.MascotaRequest;
+import com.mascotas.dto.MascotaResponds;
 import com.mascotas.service.IMascotaService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/v1/mascotas")
@@ -23,23 +26,23 @@ public class MascotaController {
     private IMascotaService mascotaService;
 
     @GetMapping
-    public ResponseEntity<List<Mascota>> findAll() {
+    public ResponseEntity<List<MascotaResponds>> findAll() {
         return ResponseEntity.ok(mascotaService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mascota> findById(@PathVariable Long id) {
+    public ResponseEntity<MascotaResponds> findById(@PathVariable Long id) {
         return ResponseEntity.ok(mascotaService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Mascota> create(@RequestBody Mascota mascota) {
-        return ResponseEntity.ok(mascotaService.create(mascota));
+    public ResponseEntity<MascotaResponds> create(@RequestBody @Valid MascotaRequest mascotaRequest) {
+        return ResponseEntity.ok(mascotaService.create(mascotaRequest));
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody Mascota mascota) {
-        mascotaService.update(mascota);
+    public ResponseEntity<Void> update(@RequestBody @Valid MascotaRequest mascotaRequest, @PathVariable Long id) {
+        mascotaService.update(mascotaRequest, id);
         return ResponseEntity.accepted().build();
     }
 

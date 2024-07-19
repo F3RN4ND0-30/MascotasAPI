@@ -2,16 +2,18 @@ package com.mascotas.service;
 
 import java.util.List;
 
+import com.mascotas.dto.MascotaRequest;
+import com.mascotas.dto.MascotaResponds;
 import com.mascotas.models.Mascota;
 
 public interface IMascotaService {
-    List<Mascota> findAll();
+    List<MascotaResponds> findAll();
 
-    Mascota findById(Long id);
+    MascotaResponds findById(Long id);
 
-    Mascota create(Mascota mascota);
+    MascotaResponds create(MascotaRequest mascotaRequest);
 
-    void update(Mascota mascota);
+    void update(MascotaRequest mascotaRequest, Long id);
     
     void delete(Long id);
 }
